@@ -1,0 +1,19 @@
+{
+  "name": "lgtv-api-proxy",
+  "version": "1.0.0",
+  "description": "rest api to proxy calls to lgtv api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bodav/lgtv-api-proxy.git"
+  },
+  "author": "bodav",
+  "license": "ISC",
+  "homepage": "https://github.com/bodav/lgtv-api-proxy#readme",
+  "dependencies": {
+    "node-lgtv-api": "^0.9.8"
+  }
+}

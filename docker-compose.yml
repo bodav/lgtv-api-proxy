@@ -1,0 +1,6 @@
+services:
+  lgtv-api-proxy:
+    build:
+      context: .
+    ports:
+      - "8081:3000"
