@@ -9,4 +9,12 @@ tvApi.setDebugMode(true);
 
 //tvApi.authenticate().then(console.log, console.error);
 
-tvApi.authenticate().then(() => tvApi.processCommand(TvApi.TV_CMD_MUTE_TOGGLE, []).then(console.log, console.error), console.error);
+//tvApi.authenticate().then(() => tvApi.processCommand(TvApi.TV_CMD_MUTE_TOGGLE, {}).then(console.log, console.error), console.error);
+//tvApi.authenticate().then(() => tvApi.processCommand("HandleKeyInput", { value: TvApi.TV_CMD_MUTE_TOGGLE }).then(console.log, console.error), console.error);
+
+const filtered = Object.fromEntries(Object.entries(TvApi).filter(
+    ([key, val]) => key.startsWith("TV_CMD_") && !isNaN(val)
+));
+
+console.log(filtered["TV_CMD_MUTE_TOGGLE"]);
+
