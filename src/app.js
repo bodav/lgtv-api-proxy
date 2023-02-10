@@ -37,12 +37,12 @@ app.get('/api/lgtv/:key/handlekeyinput/:cmd', (req, res) => {
             res.send({ resp: value });
         }, reason => {
             console.error(reason);
-            res.status(500).send(reason);
+            res.status(500).send({ resp: reason.toString() });
         });
 
     }, reason => {
         console.error(reason);
-        res.status(500).send({ resp: reason });
+        res.status(500).send({ resp: reason.toString() });
     });
 })
 
