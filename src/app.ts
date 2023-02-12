@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 const port = parseInt(process.env.PORT as string) || 3000;
-const tvip: string = process.env.TVIP ?? "192.168.1.207";
+const tvip: string = process.env.LGTVIP!;
 const tvport = 8080;
 
 const cmds = Object.fromEntries(
@@ -20,37 +20,26 @@ app.get("/api/lgtv/pair", async (req, res) => {
   pairApi.setDebugMode(true);
 
   try {
-    const resp = await pairApi.displayPairingKey();
-    res.send({ result: resp });
+    const result = await pairApi.displayPairingKey();
+    res.send({ result: result });
   } catch (error) {
     res.status(500).send({ result: error });
   }
 });
 
-app.get("/api/lgtv/:key/handlekeyinput/:cmd", (req, res) => {
+app.get("/api/lgtv/:key/handlekeyinput/:cmd", async (req, res) => {
   const tvapi = new TvApi(tvip, tvport, req.params.key);
   tvapi.setDebugMode(true);
 
-  tvapi.authenticate().then(
-    () => {
-      const cmd = cmds[req.params.cmd.toUpperCase()];
-      console.log(`Command ${req.params.cmd}. val ${cmd}`);
+  try {
+    await tvapi.authenticate();
+    const cmd = cmds[req.params.cmd.toUpperCase()];
+    const result = await tvapi.processCommand("HandleKeyInput", { value: cmd });
 
-      tvapi.processCommand("HandleKeyInput", { value: cmd }).then(
-        (value: any) => {
-          res.send({ resp: value });
-        },
-        (reason: Error) => {
-          console.error(reason);
-          res.status(500).send({ resp: reason.toString() });
-        }
-      );
-    },
-    (reason: Error) => {
-      console.error(reason);
-      res.status(500).send({ resp: reason.toString() });
-    }
-  );
+    res.send({ result: result });
+  } catch (error) {
+    res.status(500).send({ result: error });
+  }
 });
 
 app.get("/api/lgtv/commands", (req, res) => {

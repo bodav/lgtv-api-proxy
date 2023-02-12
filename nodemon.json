@@ -1,7 +1,8 @@
 {
   "signal": "SIGTERM",
   "env": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "LGTVIP": "192.168.1.207"
   },
   "ext": "ts",
   "exec": "ts-node --files src/app.ts"
