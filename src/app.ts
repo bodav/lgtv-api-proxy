@@ -5,7 +5,7 @@ import morgan from "morgan";
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 const port = parseInt(process.env.PORT as string) || 3000;
 const tvip: string = process.env.TVIP ?? "192.168.1.207";
