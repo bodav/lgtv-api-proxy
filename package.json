@@ -4,7 +4,8 @@
   "description": "rest api to proxy calls to lgtv api",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node ./dist/app.js",
+    "dev": "nodemon",
     "build": "rm -rf dist/ && tsc",
     "deploy": "ansible-playbook ansible/deploy.yml"
   },

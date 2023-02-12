@@ -1,12 +1,16 @@
-FROM node:alpine
-
+FROM node:alpine AS build
 WORKDIR /app
-ADD package.json /app
+COPY package.json ./
+RUN npm install
+COPY ./src ./src
+RUN npm run build
 
-RUN npm install --production
 
-COPY ./dist /app
-
-CMD ["node", "app.js"]
-
+FROM node:alpine
+WORKDIR /app
+COPY package.json ./
+ENV NODE_ENV=production
+RUN npm install
+COPY --from=build /app/dist ./dist
 EXPOSE 3000
+CMD npm start
