@@ -46,6 +46,6 @@ app.get("/api/lgtv/commands", (req, res) => {
   res.send(cmds);
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log(`LG TV api proxy listening on port ${port}`);
 });
