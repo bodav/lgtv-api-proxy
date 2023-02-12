@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon",
-    "build": "rm -rf dist/ && tsc"
+    "build": "rm -rf dist/ && tsc",
+    "deploy": "ansible-playbook ansible/deploy.yml"
   },
   "repository": {
     "type": "git",
