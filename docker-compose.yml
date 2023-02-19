@@ -5,4 +5,4 @@ services:
     environment:
       - LGTVIP=192.168.1.207
     ports:
-      - "3000:3000"
+      - "3080:3000"

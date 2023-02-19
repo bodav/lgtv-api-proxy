@@ -3,20 +3,20 @@
   hosts: all
   become: true
   tasks:
-    - name: Git update homepi repo
+    - name: Git update lgtv-api-proxy repo
       ansible.builtin.git:
-        repo: "https://github.com/bodav/homepi.git"
-        dest: /srv/homepi
+        repo: "https://github.com/bodav/lgtv-api-proxy.git"
+        dest: /srv/lgtv-api-proxy
         force: true
       register: repo
-    # if changed
+
     - name: Docker compose down
-      ansible.builtin.shell: "docker compose -f /srv/homepi/docker-compose.yml down --remove-orphans"
+      ansible.builtin.shell: "docker compose -f /srv/lgtv-api-proxy/docker-compose.yml down --remove-orphans"
       when: repo.changed
 
     # - name: Docker compose pull
-    #   ansible.builtin.shell: "docker compose -f /srv/homepi/docker-compose.yml pull"
+    #   ansible.builtin.shell: "docker compose -f /srv/lgtv-api-proxy/docker-compose.yml pull"
 
     - name: Docker compose up
-      ansible.builtin.shell: "docker compose -f /srv/homepi/docker-compose.yml up -d"
+      ansible.builtin.shell: "docker compose -f /srv/lgtv-api-proxy/docker-compose.yml up -d"
       when: repo.changed
