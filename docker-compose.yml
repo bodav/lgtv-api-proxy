@@ -2,6 +2,7 @@ services:
   lgtv-api-proxy:
     build:
       context: .
+    restart: unless-stopped
     environment:
       - LGTVIP=192.168.1.207
     ports:

@@ -8,7 +8,7 @@
     "dev": "nodemon",
     "build": "rm -rf dist/ && tsc",
     "container": "podman build -t lgtvapi . && podman run -p 3000:3000 --rm --name lgtvapi lgtvapi",
-    "deploy": "ansible-playbook ./ansible/deploy.yml"
+    "deploy": "ansible-playbook -i ./ansible/inventory  ./ansible/deploy.yml"
   },
   "repository": {
     "type": "git",
