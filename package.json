@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./dist/app.js",
-    "dev": "nodemon",
+    "dev": "tsx watch src/app.ts",
     "build": "rm -rf dist/ && tsc",
     "container": "podman build -t lgtvapi . && podman run -p 3000:3000 --rm --name lgtvapi lgtvapi",
     "deploy": "ansible-playbook -i ./ansible/inventory  ./ansible/deploy.yml"
@@ -28,9 +28,8 @@
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.33.0",
-    "nodemon": "^2.0.20",
     "prettier": "^2.8.3",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.2.0",
     "typescript": "^4.9.5"
   }
 }
