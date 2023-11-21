@@ -12,10 +12,10 @@ const tvip: string = process.env.LGTVIP!;
 const tvport = 8080;
 
 const cmds = Object.fromEntries(
-  Object.entries(TvApi).filter(([key, val]) => key.startsWith("TV_CMD_"))
+  Object.entries(TvApi).filter(([key]) => key.startsWith("TV_CMD_"))
 );
 
-app.get("/api/lgtv/pair", async (req, res) => {
+app.get("/api/lgtv/pair", async (_req, res) => {
   const pairApi = new TvApi(tvip, tvport);
   pairApi.setDebugMode(true);
 
@@ -42,7 +42,7 @@ app.get("/api/lgtv/:key/handlekeyinput/:cmd", async (req, res) => {
   }
 });
 
-app.get("/api/lgtv/commands", (req, res) => {
+app.get("/api/lgtv/commands", (_req, res) => {
   res.send(cmds);
 });
 
