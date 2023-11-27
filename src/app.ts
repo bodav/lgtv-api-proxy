@@ -1,6 +1,7 @@
 import express from "express";
 import TvApi from "node-lgtv-api";
 import morgan from "morgan";
+import "dotenv/config";
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
