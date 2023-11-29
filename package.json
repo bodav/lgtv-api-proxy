@@ -8,7 +8,6 @@
     "dev": "tsx watch src/app.ts",
     "build": "rm -rf dist/ && tsc",
     "container": "podman build -t lgtvapi . && podman run -p 3000:3000 --rm --name lgtvapi lgtvapi",
-    "deploy": "ansible-playbook -i ./ansible/inventory  ./ansible/deploy.yml",
     "checkdeps": "ncu"
   },
   "repository": {

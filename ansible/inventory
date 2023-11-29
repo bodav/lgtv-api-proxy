@@ -1,5 +1,0 @@
-[dev]
-devpi.local
-
-[dev:vars]
-ansible_ssh_user=pi
