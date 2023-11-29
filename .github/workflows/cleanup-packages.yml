@@ -1,0 +1,23 @@
+name: Cleanup packages
+
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME:  lgtvapiproxy
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      packages: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/delete-package-versions@v4
+        with:
+          package-name: ${{ env.IMAGE_NAME }}
+          package-type: 'container'
+          min-versions-to-keep: 1
