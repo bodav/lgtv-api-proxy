@@ -7,3 +7,4 @@ docker-compose.yml
 Dockerfile
 .gitignore
 .eslintrc.json
+.env
