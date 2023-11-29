@@ -2,11 +2,12 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main2" ]
+    branches: [ "main" ]
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME:  bodav/lgtvapiproxy
+  PACKAGE_NAME:  lgtvapiproxy
 
 jobs:
   build-and-push-image:
@@ -47,3 +48,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Cleanup packages
+        uses: actions/delete-package-versions@v4
+        with:
+          package-name: ${{ env.PACKAGE_NAME }}
+          package-type: 'container'
+          min-versions-to-keep: 1
